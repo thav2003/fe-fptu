@@ -244,7 +244,7 @@ const DashBoard: React.FC = () => {
                     </div>
                     <div className="h-full flex-[1_0_35%]">
                       <img
-                        src="/inori.png"
+                        src="./inori.png"
                         className="h-full w-full object-fill "
                       />
                     </div>
