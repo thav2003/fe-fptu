@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~antd/dist/antd.css';
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+
+}
+@layer utilities{
+  .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .site-layout-sub-header-background {
+    background: #fff;
+  }
+
+  .site-layout-background {
+    background: #fff;
+    border-radius: 0.65rem;
+  }
+    [data-theme="dark"] .site-layout-sub-header-background {
+      background: #141414;
+    }
+  .trigger {
+    padding: 0 24px;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .trigger:hover {
+    color: #1890ff;
+  }
+  .menu-dashboard-icon{
+    width: 1.25rem!important;
+    height: 1.25rem!important;
+    font-size: 1.25rem!important;
+  }
+  .custom-scroll-y::-webkit-scrollbar{
+    width: 5px;
+  }
+  .custom-scroll-y::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 0px 6px inset;
+    background-color: #b1b3b5;
+  }
+  .custom-scroll-y::-webkit-scrollbar-track {
+    background: #dadcdf;
+    border: 2px solid #ffffff;
+  }
+  .left-icon{
+    width: 2.5rem!important;
+    height: 2.5rem!important;
+    font-size: 1.25rem!important;
+    color: #e97293!important;
+    @apply bg-[#212325] flex items-center justify-center rounded-[0.75rem]
+  }
+
+
+}
