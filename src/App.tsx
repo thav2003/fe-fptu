@@ -6,10 +6,15 @@ import {
   UploadOutlined,
 } from "@ant-design/icons";
 import "./App.css";
-import Dashboard from "./modules/dashboard/dashboard";
-import XetDuyet from "./modules/xet-duyet/xet-duyet";
+
 import type { MenuProps } from "antd";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Dashboard from "./modules/dashboard/dashboard";
+import XetDuyet from "./modules/xet-duyet/xet-duyet";
+import DangBai from "./modules/dang-bai/dang-bai";
+import XoaBai from "./modules/xoa-bai/xoa-bai";
+import LichSu from "./modules/lich-su/lich-su";
 
 const { Header, Footer, Sider } = Layout;
 type MenuItem = Required<MenuProps>["items"][number];
@@ -40,11 +45,11 @@ const items: MenuItem[] = [
     <VideoCameraOutlined className="menu-dashboard-icon" />,
     [
       getItem("Cài đặt", "3"),
-      getItem("Đăng bài", "4"),
+      getItem(<Link to="/admin/dang-bai">Đăng bài</Link>, "4"),
       getItem(<Link to="/admin/xet-duyet">Duyệt bài</Link>, "5"),
-      getItem("Xóa bài", "6"),
+      getItem(<Link to="/admin/xoa-bai">Xóa Bài</Link>, "6"),
       getItem("Lịch đăng bài", "7"),
-      getItem("Lịch sử", "8"),
+      getItem(<Link to="/admin/lich-su">Lịch sử</Link>, "8"),
     ],
   ),
   getItem(
@@ -62,6 +67,11 @@ const items: MenuItem[] = [
     "12",
     <UploadOutlined className="menu-dashboard-icon" />,
   ),
+  getItem(
+    "Tool FaceBook",
+    "13",
+    <UploadOutlined className="menu-dashboard-icon" />,
+  ),
 ];
 
 const routes = [
@@ -76,6 +86,18 @@ const routes = [
   {
     path: "/admin/xet-duyet",
     component: <XetDuyet />,
+  },
+  {
+    path: "/admin/dang-bai",
+    component: <DangBai />,
+  },
+  {
+    path: "/admin/xoa-bai",
+    component: <XoaBai />,
+  },
+  {
+    path: "/admin/lich-su",
+    component: <LichSu />,
   },
 ];
 

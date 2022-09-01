@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Layout, Row, Col, Pagination } from "antd";
-import type { PaginationProps } from "antd";
-import { DashOutlined } from "@ant-design/icons";
-import { ConfessIcon, SharePublicIcon } from "../icons/icon";
-import "./xet-duyet.css";
-
+import "./dang-bai.css";
+import { Layout, Row, Col, Tabs, Button, Space } from "antd";
 import type { Confession } from "../../datas/fake-data";
 import { confessions, admin } from "../../datas/fake-data";
-
+import { ConfessIcon, SharePublicIcon } from "../icons/icon";
+import {
+  DashOutlined,
+  AreaChartOutlined,
+  FormOutlined,
+  VideoCameraFilled,
+  SendOutlined,
+  CalendarOutlined,
+} from "@ant-design/icons";
+import TrangThai from "./trang-thai/trang-thai";
 const { Content } = Layout;
+const { TabPane } = Tabs;
 
-const XetDuyet: React.FC = () => {
-  const [page, setPage] = useState<number>(1);
-  const [data, setData] = useState<Confession>(confessions[0]);
-  const handleChangePage: PaginationProps["onChange"] = (page, pageSize) => {
-    setPage(page);
-    console.log(page, pageSize);
-  };
-  useEffect(() => {
-    setData(confessions[page - 1]);
-  }, [page]);
+const DangBai: React.FC = () => {
   return (
     <Content style={{ margin: "24px 16px 0" }}>
       <div
@@ -27,22 +24,82 @@ const XetDuyet: React.FC = () => {
         style={{ padding: 24, height: "100%" }}
       >
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="h-full">
-          <Col span={13}>
+          <Col span={12}>
             <div className="space-y-4 w-full h-full">
-              <div className="bg-blue-600 p-2 flex">
-                <h3 className="text-white flex-grow flex-shrink">
+              <Tabs
+                defaultActiveKey="1"
+                tabBarStyle={{ userSelect: "none" }}
+                className="bg-[#fefefe] header-boxshadow p-2 min-h-[250px]"
+              >
+                <TabPane
+                  tab={
+                    <span>
+                      <FormOutlined />
+                      Trạng thái
+                    </span>
+                  }
+                  key="1"
+                >
+                  <TrangThai />
+                </TabPane>
+                <TabPane
+                  tab={
+                    <span>
+                      <AreaChartOutlined />
+                      Image
+                    </span>
+                  }
+                  key="2"
+                >
+                  <input
+                    accept="image/*,image/heif,image/heic"
+                    className="plzdoh0l"
+                    multiple
+                    type="file"
+                  />
+                </TabPane>
+                <TabPane
+                  tab={
+                    <span>
+                      <VideoCameraFilled />
+                      Video
+                    </span>
+                  }
+                  key="3"
+                >
+                  <input
+                    accept="video/*,video/mp4,video/x-m4v,video/x-matroska,.mkv"
+                    className="plzdoh0l"
+                    multiple
+                    type="file"
+                  />
+                </TabPane>
+              </Tabs>
+              <div className="bg-[#fefefe] p-2 flex header-boxshadow">
+                <Space>
+                  <Button
+                    className="relative"
+                    icon={
+                      <SendOutlined className="-rotate-45 -translate-y-1" />
+                    }
+                  >
+                    Đăng ngay
+                  </Button>
+                  <Button
+                    icon={<CalendarOutlined className="-translate-y-0.5" />}
+                  >
+                    Lên lịch đăng
+                  </Button>
+                </Space>
+              </div>
+            </div>
+          </Col>
+          <Col span={12}>
+            <div className="space-y-4 w-full h-full">
+              <div className="bg-[#fefefe] p-2 flex header-shadow">
+                <h3 className="font-semibold flex-grow flex-shrink ">
                   Xem trước bài viết
                 </h3>
-                <div className=" flex-shrink text-right">
-                  <Pagination
-                    responsive={true}
-                    current={page}
-                    defaultCurrent={1}
-                    total={confessions.length}
-                    defaultPageSize={1}
-                    onChange={handleChangePage}
-                  />
-                </div>
               </div>
 
               <div className={`min-h-[250px]  bg-[#1c1e21] rounded-[8px] `}>
@@ -80,7 +137,7 @@ const XetDuyet: React.FC = () => {
                       <div className="flex flex-col">
                         <div className="my-[5px] whitespace-pre-line">
                           <span className="text-[.9375rem] text-[#E4E6EB]">
-                            {data.content}
+                            {confessions[0].content}
                           </span>
                         </div>
                         <div>
@@ -153,50 +210,6 @@ const XetDuyet: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              <div>
-                <div className="bg-[#1c1e21] p-2 text-right">
-                  <Pagination
-                    responsive={true}
-                    current={page}
-                    defaultCurrent={1}
-                    total={confessions.length}
-                    defaultPageSize={1}
-                    onChange={handleChangePage}
-                  />
-                </div>
-              </div>
-            </div>
-          </Col>
-          <Col span={11}>
-            <div className=" w-full h-full">
-              <div className="bg-blue-600 p-2">
-                <h3 className="text-white">Danh sách chờ duyệt</h3>
-              </div>
-
-              <table className="w-full text-left border-spacing-2 border-separate">
-                <tbody>
-                  <tr>
-                    <th className="w-[9%]">STT</th>
-                    <th className="w-[50%]">Bài viết</th>
-                    <th className="w-[17%]">Vi phạm</th>
-                    <th className="w-[20%]">Thời gian gửi</th>
-                  </tr>
-                  {confessions.map((item, index) => (
-                    <tr key={index}>
-                      <th>{item.id}</th>
-                      <td
-                        className="line-clamp-2 whitespace-pre-line cursor-pointer"
-                        onClick={() => setPage(index + 1)}
-                      >
-                        {item.content}
-                      </td>
-                      <td>{item.violate}</td>
-                      <td>{item.sendTime}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
             </div>
           </Col>
         </Row>
@@ -204,4 +217,4 @@ const XetDuyet: React.FC = () => {
     </Content>
   );
 };
-export default XetDuyet;
+export default DangBai;

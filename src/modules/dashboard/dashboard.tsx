@@ -96,7 +96,7 @@ const dateCellRender = (value: Moment, month: number) => {
     <div>
       <Badge dot={showDot}>
         <div
-          onClick={showModal}
+          onClick={value.month() === month ? showModal : undefined}
           className={`h-[32px] w-[32px] hover:bg-slate-400  flex items-center justify-center  ${
             showDot && "bg-sky-500"
           }`}
