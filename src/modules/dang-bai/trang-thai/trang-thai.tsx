@@ -53,7 +53,7 @@ const TrangThai: React.FC = () => {
             className="inline-flex cursor-pointer flex-row items-stretch flex-shrink border-box border-solid  basis-auto p-0 relative "
           >
             <span className="ml-[-4px] mt-[-2px] select-none">
-              <img className="h-[38px]" alt="" src="select-font.png" />
+              <img className="h-[38px]" alt="" src="/select-font.png" />
             </span>
           </div>
         </div>

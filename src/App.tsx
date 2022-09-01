@@ -15,6 +15,7 @@ import XetDuyet from "./modules/xet-duyet/xet-duyet";
 import DangBai from "./modules/dang-bai/dang-bai";
 import XoaBai from "./modules/xoa-bai/xoa-bai";
 import LichSu from "./modules/lich-su/lich-su";
+import LichDangBai from "./modules/lich-dang-bai/lich-dang-bai";
 
 const { Header, Footer, Sider } = Layout;
 type MenuItem = Required<MenuProps>["items"][number];
@@ -47,8 +48,8 @@ const items: MenuItem[] = [
       getItem("Cài đặt", "3"),
       getItem(<Link to="/admin/dang-bai">Đăng bài</Link>, "4"),
       getItem(<Link to="/admin/xet-duyet">Duyệt bài</Link>, "5"),
-      getItem(<Link to="/admin/xoa-bai">Xóa Bài</Link>, "6"),
-      getItem("Lịch đăng bài", "7"),
+      getItem(<Link to="/admin/xoa-bai">Bài viết đã duyệt</Link>, "6"),
+      getItem(<Link to="/admin/lich-dang-bai">Lịch đăng bài</Link>, "7"),
       getItem(<Link to="/admin/lich-su">Lịch sử</Link>, "8"),
     ],
   ),
@@ -98,6 +99,10 @@ const routes = [
   {
     path: "/admin/lich-su",
     component: <LichSu />,
+  },
+  {
+    path: "/admin/lich-dang-bai",
+    component: <LichDangBai />,
   },
 ];
 
